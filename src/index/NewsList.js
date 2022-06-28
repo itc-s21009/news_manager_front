@@ -1,7 +1,7 @@
 import RenderNews from "./RenderNews";
 import {useState} from "react";
 
-const App = () => {
+const NewsList = () => {
     const [page, setPage] = useState(1)
     const next = () =>
         setPage(page + 1)
@@ -22,10 +22,8 @@ const App = () => {
                     </button>
                 </div>
             </div>
-            <div className={"news-table"}>
-                <RenderNews page={page} key={page}/>
-            </div>
+            <RenderNews page={page} key={page} />
         </>
     )
 }
-export default App
+export default NewsList

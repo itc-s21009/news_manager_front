@@ -22,8 +22,8 @@ const RenderNews = ({page}) => {
             </tr>
             </thead>
             <tbody>
-            {Object.entries(news).map(d => d[1]).map((d) =>
-                <tr>
+            {Object.entries(news).map(d => d[1]).map((d, index) =>
+                <tr key={index}>
                     <td>{d["title"]}</td>
                     <td>{d["body"]}</td>
                     <td>{d["post_by"]}</td>
