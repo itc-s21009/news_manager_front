@@ -1,57 +1,31 @@
-import React from "react";
+import RenderNews from "./RenderNews";
+import {useState} from "react";
 
-import axios from "axios";
+const App = () => {
+    const [page, setPage] = useState(1)
+    const next = () =>
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = []
+        setPage(page + 1)
+    const prev = () => {
+        if (page > 1)
+            setPage(page - 1)
     }
-
-    memberList(list) {
-        const memberList = list.map((d) => {
-            return (
-                <tr>
-                    <td>{d["title"]}</td>
-                    <td>{d["body"]}</td>
-                    <td>{d["post_by"]}</td>
-                    <td>{d["publish_at"]}</td>
-                </tr>
-            );
-        });
-
-        return (
-            <table className="table table-striped">
-                <thead><tr>
-                    <th>タイトル</th>
-                    <th>本文</th>
-                    <th>投稿者</th>
-                    <th>投稿日時</th>
-                </tr>
-                </thead>
-                <tbody>
-                {memberList}
-                </tbody>
-            </table>
-    )
-    }
-
-    render() {
-        const url = "http://localhost:8080/news";
-
-        axios.get(url).then(res => {
-            // this.setState(Object.entries(res.data).map(d => d[1]));
-            this.setState(res.data)
-        });
-        let json = Object.entries(this.state).map(d => d[1])
-        console.log(json);
-        console.log(typeof (json));
-        return (
-            <div>
-                {this.memberList(json)}
+    return (
+        <>
+            <div className={"text-center m-0"}>
+                <p>{page}ページ目</p>
+                <div className={"btn-group"}>
+                    <button className={'btn btn-primary'} onClick={prev}>Prev<i className="fa-solid fa-angles-left"></i>
+                    </button>
+                    <button className={'btn btn-primary'} onClick={next}>Next<i
+                        className="fa-solid fa-angles-right"></i>
+                    </button>
+                </div>
             </div>
-        );
-    }
+            <div className={"news-table"}>
+                <RenderNews page={page} key={page}/>
+            </div>
+        </>
+    )
 }
-
 export default App
