@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import NewsList from "./index/NewsList";
+import NewsList from "./news/NewsList";
 import Header from "./common/Header";
 
 const App = () =>

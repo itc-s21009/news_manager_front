@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import NewsList from './index/NewsList';
+import NewsList from './news/NewsList';
 
 test('renders learn react link', () => {
   render(<NewsList />);
