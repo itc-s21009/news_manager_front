@@ -34,7 +34,7 @@ const RenderNews = ({page}) => {
             <tbody>
             {Object.entries(news).map(d => d[1]).map((d, index) =>
                 <tr key={index}>
-                    <td>{d["title"]}</td>
+                    <td><a href={`/news/${d["id"]}`}>{d["title"]}</a></td>
                     <td>{d["post_by"]}</td>
                     <td>{translateDate(d["publish_at"])}</td>
                     <td>{d["category"]}</td>

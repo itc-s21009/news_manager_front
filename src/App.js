@@ -3,6 +3,7 @@ import NewsList from "./news/NewsList";
 import Header from "./common/Header";
 import Top from "./index/Top";
 import NotFound from "./common/NotFound";
+import NewsSingle from "./news/NewsSingle";
 
 const App = () =>
     <>
@@ -11,6 +12,7 @@ const App = () =>
             <Routes>
                 <Route exact path={"/"} element={<Top />}/>
                 <Route exact path={"/news"} element={<NewsList />}/>
+                <Route exact path={"/news/:id"} element={<NewsSingle />}/>
                 <Route exact path={"*"} element={<NotFound />}/>
             </Routes>
         </BrowserRouter>
