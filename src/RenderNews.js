@@ -1,16 +1,15 @@
-
 import axios from "axios";
 import {useEffect, useState} from "react";
 
 const RenderNews = ({page}) => {
     const [news, setNews] = useState([])
     const url = "http://localhost:8080/news?page=" + page;
-    console.log("URL: " + url)
     const getData = () => {
+        console.log("URL: " + url)
         axios.get(url)
             .then(res => setNews(res.data))
     }
-    useEffect(getData)
+    useEffect(getData, [])
     return (
         <table className="table table-striped">
             <thead>
