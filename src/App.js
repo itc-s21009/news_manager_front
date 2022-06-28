@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import axios from "axios";
+
+class App extends React.Component {
+    constructor() {
+        super();
+        this.state = []
+    }
+
+    memberList(list) {
+        const memberList = list.map((d) => {
+            return (
+                <tr>
+                    <td>{d["title"]}</td>
+                    <td>{d["body"]}</td>
+                    <td>{d["post_by"]}</td>
+                    <td>{d["publish_at"]}</td>
+                </tr>
+            );
+        });
+
+        return (
+            <table className="table table-striped">
+                <thead><tr>
+                    <th>タイトル</th>
+                    <th>本文</th>
+                    <th>投稿者</th>
+                    <th>投稿日時</th>
+                </tr>
+                </thead>
+                <tbody>
+                {memberList}
+                </tbody>
+            </table>
+    )
+    }
+
+    render() {
+        const url = "http://localhost:8080/news";
+
+        axios.get(url).then(res => {
+            // this.setState(Object.entries(res.data).map(d => d[1]));
+            this.setState(res.data)
+        });
+        let json = Object.entries(this.state).map(d => d[1])
+        console.log(json);
+        console.log(typeof (json));
+        return (
+            <div>
+                {this.memberList(json)}
+            </div>
+        );
+    }
 }
 
-export default App;
+export default App
