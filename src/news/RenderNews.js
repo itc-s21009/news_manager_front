@@ -15,9 +15,8 @@ const RenderNews = ({page}) => {
             <thead>
             <tr>
                 <th>タイトル</th>
-                <th>本文</th>
                 <th>投稿者</th>
-                <th>投稿日時</th>
+                <th>公開日時</th>
                 <th>カテゴリ</th>
             </tr>
             </thead>
@@ -25,7 +24,6 @@ const RenderNews = ({page}) => {
             {Object.entries(news).map(d => d[1]).map((d, index) =>
                 <tr key={index}>
                     <td>{d["title"]}</td>
-                    <td>{d["body"]}</td>
                     <td>{d["post_by"]}</td>
                     <td>{d["publish_at"]}</td>
                     <td>{d["category"]}</td>
