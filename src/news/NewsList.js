@@ -14,12 +14,8 @@ const NewsList = () => {
             <div className={"text-center mt-3"}>
                 <p>{page}ページ目</p>
                 <div className={"btn-group"}>
-                    <button className={'btn btn-primary'} onClick={prev}>{"<<"}<i
-                        className="fa-solid fa-angles-left"></i>
-                    </button>
-                    <button className={'btn btn-primary'} onClick={next}>{">>"}<i
-                        className="fa-solid fa-angles-right"></i>
-                    </button>
+                    <button className={'btn btn-primary'} onClick={prev}>{"<<"}</button>
+                    <button className={'btn btn-primary'} onClick={next}>{">>"}</button>
                 </div>
             </div>
             <RenderNews page={page} key={page} />
