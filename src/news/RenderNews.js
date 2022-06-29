@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {translateDate} from "../common/Utility";
 
 const RenderNews = ({page}) => {
     const [news, setNews] = useState([])
@@ -10,17 +11,6 @@ const RenderNews = ({page}) => {
             .then(res => setNews(res.data))
     }
     useEffect(getData, [])
-    const translateDate = (dateStr) => {
-        const f = (n) => ("00" + n).slice(-2)
-        const date = new Date(Date.parse(dateStr))
-        const year = date.getFullYear()
-        const month = f(date.getMonth())
-        const day = f(date.getDay())
-        const hour = f(date.getHours())
-        const min = f(date.getMinutes())
-        const sec = f(date.getSeconds())
-        return `${year}/${month}/${day} ${hour}:${min}:${sec}`
-    }
     return (
         <table className="table table-striped">
             <thead>

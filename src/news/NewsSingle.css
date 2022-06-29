@@ -1,0 +1,15 @@
+html, body, #root, .news{
+    height: 100%;
+}
+
+.date {
+    color: gray;
+}
+
+.body {
+    width: 80%;
+    min-width: 400px;
+    max-width: 600px;
+    min-height: 300px;
+    border: 2px gray solid;
+}
