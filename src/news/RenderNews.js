@@ -1,13 +1,13 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {translateDate} from "../common/Utility";
+import {APIURL, translateDate} from "../common/Utility";
 
 const RenderNews = ({page}) => {
     const [news, setNews] = useState([])
-    const url = "http://localhost:8080/news?page=" + page;
+    const url = `${APIURL}/news?page=${page}`;
     const getData = () => {
         console.log("URL: " + url)
-        axios.get(url)
+        axios.get(url, {withCredentials: true})
             .then(res => setNews(res.data))
     }
     useEffect(getData, [])

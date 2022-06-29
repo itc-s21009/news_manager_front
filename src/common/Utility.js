@@ -9,3 +9,5 @@ export const translateDate = (dateStr) => {
     const sec = f(date.getSeconds())
     return `${year}/${month}/${day} ${hour}:${min}:${sec}`
 }
+
+export const APIURL = "http://localhost:8080"

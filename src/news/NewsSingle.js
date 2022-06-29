@@ -11,12 +11,14 @@ const NewsSingle = () => {
     const url = "http://localhost:8080/news/" + id;
     const getData = () => {
         console.log("URL: " + url)
-        axios.get(url)
-            .then(res => setData(res.data))
+        axios.get(url, {withCredentials: true})
+            .then(res => {
+                setData(res.data)
+            })
     }
     useEffect(getData, [])
     if (data["body"] === undefined) {
-        return <NotFound />
+        return <NotFound/>
     }
     return (
         <>
