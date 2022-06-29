@@ -3,6 +3,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import './NewsSingle.css'
 import {translateDate} from "../common/Utility";
+import NotFound from "../common/NotFound";
 
 const NewsSingle = () => {
     const {id} = useParams()
@@ -14,6 +15,9 @@ const NewsSingle = () => {
             .then(res => setData(res.data))
     }
     useEffect(getData, [])
+    if (data["body"] === undefined) {
+        return <NotFound />
+    }
     return (
         <>
             <div className={"news p-2"}>
