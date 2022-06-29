@@ -11,13 +11,13 @@ const NewsList = () => {
     }
     return (
         <>
-            <div className={"text-center m-0"}>
+            <div className={"text-center mt-3"}>
                 <p>{page}ページ目</p>
                 <div className={"btn-group"}>
-                    <button className={'btn btn-primary'} onClick={prev}>Prev<i
+                    <button className={'btn btn-primary'} onClick={prev}>{"<<"}<i
                         className="fa-solid fa-angles-left"></i>
                     </button>
-                    <button className={'btn btn-primary'} onClick={next}>Next<i
+                    <button className={'btn btn-primary'} onClick={next}>{">>"}<i
                         className="fa-solid fa-angles-right"></i>
                     </button>
                 </div>
