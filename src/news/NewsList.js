@@ -1,5 +1,6 @@
 import RenderNews from "./RenderNews";
 import {useState} from "react";
+import Header from "../common/Header";
 
 const NewsList = () => {
     const [page, setPage] = useState(1)
@@ -11,6 +12,7 @@ const NewsList = () => {
     }
     return (
         <>
+            <Header/>
             <div className={"text-center mt-3"}>
                 <p>{page}ページ目</p>
                 <div className={"btn-group"}>

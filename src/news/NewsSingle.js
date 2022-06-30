@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import './NewsSingle.css'
 import {translateDate} from "../common/Utility";
 import NotFound from "../common/NotFound";
+import Header from "../common/Header";
 
 const NewsSingle = () => {
     const {id} = useParams()
@@ -21,6 +22,7 @@ const NewsSingle = () => {
     }
     return (
         <>
+            <Header/>
             <div className={"news p-2"}>
                 <div className={"title d-flex align-items-end"}>
                     <h1>{data["title"]}</h1>

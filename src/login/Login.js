@@ -1,28 +1,26 @@
 import './Login.css'
 import axios from "axios";
 import {APIURL} from "../common/Utility";
-import {useContext, useState} from "react";
-import {FlagLoggedIn} from "../App";
+import {useState} from "react";
+import Header from "../common/Header";
 
 const Login = () => {
     const [error, setError] = useState(undefined)
-    const {setLoggedIn} = useContext(FlagLoggedIn)
 
     const PostLogin = (username, password) => {
         if (username === "" || password === "") {
             setError("ユーザーIDとパスワードを入力してください")
             return
         }
-        console.log(username, password)
         const params = new URLSearchParams()
         params.append("user", username)
         params.append("pass", password)
         axios.post(`${APIURL}/login`, params, {withCredentials: true})
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res)
                     window.location.href = "/"
-                    setLoggedIn(true)
+                    console.log(res)
+                    sessionStorage.setItem("username", username)
                 }
             })
             .catch(({response}) => {
@@ -43,26 +41,29 @@ const Login = () => {
             </div>
         }
     }
-    return <>
-        <h1 className={"mt-3 text-center"}>ログイン</h1>
-        <div className={"login p-3 mt-3 m-auto"}>
-            {<RenderError/>}
-            <div className={"mb-3 row p-3"}>
-                <label htmlFor={"username"}>ユーザーID</label>
-                <input type={"text"} id={"username"}/>
+    return (
+        <>
+            <Header/>
+            <h1 className={"mt-3 text-center"}>ログイン</h1>
+            <div className={"login p-3 mt-3 m-auto"}>
+                {<RenderError/>}
+                <div className={"mb-3 row p-3"}>
+                    <label htmlFor={"username"}>ユーザーID</label>
+                    <input type={"text"} id={"username"}/>
+                </div>
+                <div className={"mb-3 row p-3"}>
+                    <label htmlFor={"password"}>パスワード</label>
+                    <input type={"password"} id={"password"}/>
+                </div>
+                <button onClick={() => {
+                    const username = document.getElementById("username").value
+                    const password = document.getElementById("password").value
+                    PostLogin(username, password)
+                }} className={"btn btn-primary w-100"}>ログイン
+                </button>
             </div>
-            <div className={"mb-3 row p-3"}>
-                <label htmlFor={"password"}>パスワード</label>
-                <input type={"password"} id={"password"}/>
-            </div>
-            <button onClick={() => {
-                const username = document.getElementById("username").value
-                const password = document.getElementById("password").value
-                PostLogin(username, password)
-            }} className={"btn btn-primary w-100"}>ログイン
-            </button>
-        </div>
-    </>
+        </>
+    )
 }
 
 export default Login

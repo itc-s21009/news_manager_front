@@ -1,7 +1,9 @@
 import mezamashikun from '../images/mezamashi.jpg'
+import Header from "../common/Header";
 
 const Top = () =>
     <>
+        <Header/>
         <h1 className={"text-center mt-3"}>TOP</h1>
         <div className={"position-absolute h-75 w-100 m-0 d-flex align-items-center justify-content-center"}>
             <div className="card text-center">
