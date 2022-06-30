@@ -2,5 +2,12 @@
     width: 300px;
     min-height: 50%;
     border: 3px black solid;
+    border-radius: 30px;
     background-color: lightcyan;
+}
+
+.error {
+    border: 2px black solid;
+    border-radius: 10px;
+    background-color: #f56464;
 }

@@ -1,26 +1,48 @@
 import './Login.css'
 import axios from "axios";
 import {APIURL} from "../common/Utility";
+import {useState} from "react";
 
-const PostLogin = (username, password) => {
-    console.log(username, password)
-    const params = new URLSearchParams()
-    params.append("user", username)
-    params.append("pass", password)
-    axios.post(`${APIURL}/login`, params, {withCredentials: true})
-        .then(res => {
-            console.log(res)
-        })
-        .catch(({response}) => {
-            console.log(response)
-        })
-    return <Login/>
-}
+const Login = () => {
+    const [error, setError] = useState(undefined)
 
-const Login = () =>
-    <>
+    const PostLogin = (username, password) => {
+        if (username === "" || password === "") {
+            setError("ユーザーIDとパスワードを入力してください")
+            return
+        }
+        console.log(username, password)
+        const params = new URLSearchParams()
+        params.append("user", username)
+        params.append("pass", password)
+        axios.post(`${APIURL}/login`, params, {withCredentials: true})
+            .then(res => {
+                console.log(res)
+                window.location.href = "/"
+            })
+            .catch(({response}) => {
+                console.log(response)
+                switch (response.status) {
+                    case 401:
+                        setError("ユーザーIDまたはパスワードが違います")
+                        break
+                    default:
+                        setError("エラーが発生しました。もう一度お試しください。")
+                        break
+                }
+            })
+    }
+    const RenderError = () => {
+        if (error !== undefined) {
+            return <div className={"error text-center p-2"}>
+                <p>{error}</p>
+            </div>
+        }
+    }
+    return <>
         <h1 className={"mt-3 text-center"}>ログイン</h1>
         <div className={"login p-3 mt-3 m-auto"}>
+            {<RenderError/>}
             <div className={"mb-3 row p-3"}>
                 <label htmlFor={"username"}>ユーザーID</label>
                 <input type={"text"} id={"username"}/>
@@ -37,5 +59,6 @@ const Login = () =>
             </button>
         </div>
     </>
+}
 
 export default Login
