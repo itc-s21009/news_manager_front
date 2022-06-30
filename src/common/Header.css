@@ -5,7 +5,8 @@ div a {
     border: 5px gray solid;
     border-radius: 10px;
 }
-.menu a, p{
+.menu a,
+.menu p{
     padding: 10px;
     text-decoration: none;
     color: white;
