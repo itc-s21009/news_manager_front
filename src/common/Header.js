@@ -1,7 +1,20 @@
 import './Header.css'
+import {useContext} from "react";
+import {FlagLoggedIn} from "../App";
 
-const Header = () =>
-    <header>
+const Header = () => {
+    const isLoggedIn = useContext(FlagLoggedIn)
+    const Menu = () => {
+        if (isLoggedIn) {
+            return <>
+            </>
+        } else {
+            return <>
+                <a href={"/login"} className={"text-decoration-none text-white"}><h5>ログイン</h5></a>
+            </>
+        }
+    }
+    return <header>
         <div className={"bg-dark bg-gradient p-2"}>
             <div className={"container"}>
                 <div className={"row"}>
@@ -10,11 +23,12 @@ const Header = () =>
                     </div>
                     <div className={"col-3 offset-3 menu d-flex"}>
                         <a href={"/news"} className={"text-decoration-none text-white"}><h5>ニュース</h5></a>
-                        <a href={"/login"} className={"text-decoration-none text-white"}><h5>ログイン</h5></a>
+                        <Menu />
                     </div>
                 </div>
             </div>
         </div>
     </header>
+}
 
 export default Header

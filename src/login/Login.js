@@ -1,10 +1,12 @@
 import './Login.css'
 import axios from "axios";
 import {APIURL} from "../common/Utility";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {FlagLoggedIn} from "../App";
 
 const Login = () => {
     const [error, setError] = useState(undefined)
+    const {setLoggedIn} = useContext(FlagLoggedIn)
 
     const PostLogin = (username, password) => {
         if (username === "" || password === "") {
@@ -18,7 +20,9 @@ const Login = () => {
         axios.post(`${APIURL}/login`, params, {withCredentials: true})
             .then(res => {
                 if (res.status === 200) {
+                    console.log(res)
                     window.location.href = "/"
+                    setLoggedIn(true)
                 }
             })
             .catch(({response}) => {
