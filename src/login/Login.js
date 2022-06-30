@@ -17,11 +17,11 @@ const Login = () => {
         params.append("pass", password)
         axios.post(`${APIURL}/login`, params, {withCredentials: true})
             .then(res => {
-                console.log(res)
-                window.location.href = "/"
+                if (res.status === 200) {
+                    window.location.href = "/"
+                }
             })
             .catch(({response}) => {
-                console.log(response)
                 switch (response.status) {
                     case 401:
                         setError("ユーザーIDまたはパスワードが違います")

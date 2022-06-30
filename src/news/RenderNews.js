@@ -6,7 +6,6 @@ const RenderNews = ({page}) => {
     const [news, setNews] = useState([])
     const url = `${APIURL}/news?page=${page}`;
     const getData = () => {
-        console.log("URL: " + url)
         axios.get(url, {withCredentials: true})
             .then(res => setNews(res.data))
     }

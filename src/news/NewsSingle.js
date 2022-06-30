@@ -10,7 +10,6 @@ const NewsSingle = () => {
     const [data, setData] = useState({})
     const url = "http://localhost:8080/news/" + id;
     const getData = () => {
-        console.log("URL: " + url)
         axios.get(url, {withCredentials: true})
             .then(res => {
                 setData(res.data)
